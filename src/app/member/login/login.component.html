@@ -1,0 +1,24 @@
+<form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
+  <mat-card fxLayout="column" fxLayoutAlign="center" fxFlex="400px">
+    <mat-card-header fxLayoutAlign="center">
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Username *" formControlName="username">
+        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">&nbsp;</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="password" matInput placeholder="Password *" formControlName="password">
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">&nbsp;</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions fxLayout="column" fxLayoutAlign="center center">
+      <button fxFill mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+      <div fxLayout="row" fxLayoutAlign="center" fxFlexOffset="10px" fxLayoutGap="10px">
+        <div class="mat-caption">Not a member?</div>
+        <div class="mat-caption"><a routerLink="/register">Register</a></div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

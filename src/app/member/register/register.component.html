@@ -1,0 +1,56 @@
+<form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card fxLayout="column" fxFlex="400px">
+    <mat-card-header fxFlexAlign="center">
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxFlexOffset="10px">
+      <mat-form-field>
+        <input matInput placeholder="First Name *" formControlName="firstName">
+        <mat-error *ngIf="registerForm.controls['firstName'].hasError('required')">&nbsp;</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name *" formControlName="lastName">
+        <mat-error *ngIf="registerForm.controls['lastName'].hasError('required')">&nbsp;</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email Address *" formControlName="emailAddress">
+        <mat-error *ngIf="registerForm.controls['emailAddress'].hasError('required')">&nbsp;</mat-error>
+        <mat-error *ngIf="registerForm.controls['emailAddress'].hasError('pattern')">&nbsp;</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Username *" formControlName="username"
+               matTooltip="4 characters, lowercase and number only starting with lowercase">
+        <mat-error *ngIf="registerForm.controls['username'].hasError('required')">&nbsp;</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password *" formControlName="password"
+               matTooltip="lowercase, uppercase, number, special character">
+        <mat-icon *ngIf="!registerForm.controls.password.errors && !registerForm.controls.password.pristine" matSuffix
+                  color="primary">check
+        </mat-icon>
+        <mat-icon *ngIf="registerForm.controls.password.errors && !registerForm.controls.password.pristine" matSuffix
+                  color="warn">close
+        </mat-icon>
+        <mat-error *ngIf="registerForm.controls.password.hasError('required')">&nbsp;</mat-error>
+        <mat-error *ngIf="registerForm.controls.password.hasError('pattern')">&nbsp;</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Confirm Password *" formControlName="passwordConfirm">
+        <mat-icon *ngIf="!registerForm.errors?.passwordDoesNotMatch && !registerForm.controls.passwordConfirm.pristine"
+                  matSuffix color="primary">check
+        </mat-icon>
+        <mat-icon *ngIf="registerForm.errors?.passwordDoesNotMatch && !registerForm.controls.passwordConfirm.pristine"
+                  matSuffix color="warn">close
+        </mat-icon>
+        <mat-error *ngIf="registerForm.controls.passwordConfirm.hasError('required')"></mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions fxLayout="column" fxFlexAlign="center center">
+      <button fxFill mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Submit</button>
+      <div fxLayout="row" fxLayoutAlign="center" fxFlexOffset="10px" fxLayoutGap="10px">
+        <div class="mat-caption">Already a member?</div>
+        <div class="mat-caption"><a routerLink="/login">Login</a></div>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>
